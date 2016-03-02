@@ -3,10 +3,10 @@ asm AdvancedClock2
 	domain Second of (Integer) 
 	domain Minute of (Integer)
 	domain Hour of (Integer)
-	monitored signal: Boolean  
-	controlled seconds: Second initially 0
-	controlled minutes: Minute initially 0   
-	controlled hours: Hour initially 0
+	monitored signal -> Boolean  
+	controlled seconds -> Second initially 0
+	controlled minutes -> Minute initially 0   
+	controlled hours -> Hour initially 0
 
 rule r_IncMinHours =  
 	par
@@ -20,9 +20,9 @@ rule Main=
 	if signal then
 		par
 			if seconds = 59 then
-				r_IncMinHours()
+				r_IncMinHours
 			endif
-				seconds := (seconds + 1) mod 60
+			seconds := (seconds + 1) mod 60
 		endpar
 	endif
 

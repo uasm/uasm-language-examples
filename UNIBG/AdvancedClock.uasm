@@ -3,10 +3,11 @@ asm AdvancedClock
 	domain Second of (Integer) 
 	domain Minute of (Integer)
 	domain Hour of (Integer)
-	controlled seconds: Second initially 0
-	controlled minutes: Minute initially 0   
-	controlled hours: Hour initially 0
-
+	controlled seconds -> Second initially 0
+	controlled minutes -> Minute initially 0   
+	controlled hours -> Hour initially 0
+	
+	
 rule r_IncMinHours =  
 	par
 		if minutes = 59 then
@@ -18,7 +19,7 @@ rule r_IncMinHours =
 rule Main=
 	par
 		if seconds = 59 then
-			r_IncMinHours()
+			r_IncMinHours
 		endif
 			seconds := (seconds + 1) mod 60
 	endpar
