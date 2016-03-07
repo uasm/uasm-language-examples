@@ -2,9 +2,10 @@ asm EuclideMCD
 
 	controlled numA -> Integer initially 6409
 	controlled numB -> Integer initially 3289
+	
 
 
-rule r_Main =
+rule Main =
 		if(numA != numB) then
 			if(numA > numB) then
 				numA := numA - numB
