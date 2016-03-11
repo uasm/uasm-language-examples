@@ -20,3 +20,5 @@ domain D14 of (x in Integer, Integer, y) initially {(0,2,6),(5,3,9)} //currently
 domain D15 of (x in Prova, y in Integer)
 domain D16 of (x in Integer, y in Integer, z in Integer) initially {(0,2,6),(5,3,9)}
 domain D17 of (x in String, y in Integer, z in Integer) initially {("Name1",2,6),("Name2",3,9)}
+domain D18 of Agent
+domain D19 of Integer

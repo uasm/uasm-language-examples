@@ -1,0 +1,21 @@
+asm parRule1
+
+rule r_skip=
+	skip
+	
+rule r_skip (var in Integer)=
+	skip
+
+rule r_Main=
+let x=1, y=10 in 
+	par
+		if (x=1) then
+		{
+			r_skip(x)
+ 			r_skip
+ 		}
+		endif
+		while x = 0 do r_skip 
+	endpar
+			
+exec r_Main

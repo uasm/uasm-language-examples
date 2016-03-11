@@ -1,0 +1,18 @@
+asm function1
+
+enum enumDom = {AA,BB}
+controlled counter -> Integer  initially 5
+controlled functioncontrolled -> Integer
+controlled functioncontrolled2 (x) -> Integer
+controlled functioncontrolled3 (Integer, Integer) -> Integer
+static functionstatic -> Integer always 3
+derived functionder -> Integer = if counter > 0 then counter+1 else 3
+derived functionder2 (x in Integer)-> Integer = x > 0 ? 1 : 3
+shared functionshared -> Integer initially 55
+out functionout -> String initially "OutFunction"
+
+
+rule r_Main=
+	skip
+			
+exec r_Main

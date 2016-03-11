@@ -1,0 +1,14 @@
+asm existTerm1
+
+	domain D2 of (Integer) initially {0,5,6}
+	domain D8 of (x in Integer, y in Integer) initially {(0,2),(5,3),(15,25)}
+
+
+
+rule r_skip=
+	skip
+	
+rule existRule =
+	forall x in D8 with exists a in D2, b in D2 with (a=0 and b=6) do r_skip
+
+exec existRule

@@ -1,0 +1,13 @@
+asm chooseRule1
+
+	enum EnumDom = {AA,BB}
+	controlled counter -> Integer  initially 5
+
+
+rule r_skip=
+	skip
+
+rule r_Main=
+	choose x in EnumDom, y in EnumDom with x=AA do r_skip
+
+exec r_Main
