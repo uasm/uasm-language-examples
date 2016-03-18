@@ -3,22 +3,26 @@ asm domainTest
 
 enum Prova = {AA,BB}
 
-domain D1 of (Integer)
-domain D2 of (Integer) initially {0,5,6}
-domain D3 of (Integer,Integer) //currently no translation to ASMETA
-domain D4 of (Integer,Integer) initially {(2,5),(3,8)} //currently no translation to ASMETA
-domain D5 of (x in Integer)
-domain D6 of (x in Integer) initially {8,11}
-domain D7 of (x in Integer, y in Integer)
-domain D8 of (x in Integer, y in Integer) initially {(0,2),(5,3),(15,25)}
+domain D1 of (NUMBER)
+domain D2 of (INTEGER) initially {0,5,6}
+domain D3 of (INTEGER,INTEGER) //currently no translation to ASMETA
+domain D4 of (INTEGER,INTEGER) initially {(2,5),(3,8)} //currently no translation to ASMETA
+domain D5 of (x in INTEGER)
+domain D6 of (x in INTEGER) initially {8,11}
+domain D7 of (x in INTEGER, y in INTEGER)
+domain D8 of (x in INTEGER, y in INTEGER) initially {(0,2),(5,3),(15,25)}
 domain D9 of (x)
 domain D10 of (x) initially {8,11}
 domain D11 of (x, y)
 domain D12 of (x, y) initially {(0,2),(5,3)}
-domain D13 of (x in Integer, Integer, y) //currently no translation to ASMETA
-domain D14 of (x in Integer, Integer, y) initially {(0,2,6),(5,3,9)} //currently no translation to ASMETA
-domain D15 of (x in Prova, y in Integer)
-domain D16 of (x in Integer, y in Integer, z in Integer) initially {(0,2,6),(5,3,9)}
-domain D17 of (x in String, y in Integer, z in Integer) initially {("Name1",2,6),("Name2",3,9)}
+domain D13 of (x in INTEGER, INTEGER, y) //currently no translation to ASMETA
+domain D14 of (x in INTEGER, INTEGER, y) initially {(0,2,6),(5,3,9)} //currently no translation to ASMETA
+domain D15 of (x in Prova, y in INTEGER)
+domain D16 of (x in INTEGER, y in INTEGER, z in INTEGER) initially {(0,2,6),(5,3,9)}
+//domain D17 of (x in STRING, y in INTEGER, z in INTEGER) initially {("Name1",2,6),("Name2",3,9)}
 domain D18 of Agent
-domain D19 of Integer
+domain D19 of INTEGER
+domain D20 of SET(D19)
+domain D21 of (INTEGER,MAP(INTEGER,INTEGER))
+
+controlled prova -> SET(INTEGER)

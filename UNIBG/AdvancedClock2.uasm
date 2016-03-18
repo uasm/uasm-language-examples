@@ -1,9 +1,9 @@
 asm AdvancedClock2
 
-	domain Second of (Integer) 
-	domain Minute of (Integer)
-	domain Hour of (Integer)
-	monitored signal -> Boolean  
+	domain Second of (INTEGER) 
+	domain Minute of (INTEGER)
+	domain Hour of (INTEGER)
+	monitored signal -> BOOLEAN  
 	controlled seconds -> Second initially 0
 	controlled minutes -> Minute initially 0   
 	controlled hours -> Hour initially 0

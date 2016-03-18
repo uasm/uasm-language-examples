@@ -1,8 +1,8 @@
 asm AdvancedClock
 
-	domain Second of (Integer) 
-	domain Minute of (Integer)
-	domain Hour of (Integer)
+	domain Second of (INTEGER) 
+	domain Minute of (INTEGER)
+	domain Hour of (INTEGER)
 	controlled seconds -> Second initially 0
 	controlled minutes -> Minute initially 0   
 	controlled hours -> Hour initially 0

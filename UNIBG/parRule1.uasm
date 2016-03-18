@@ -3,7 +3,7 @@ asm parRule1
 rule r_skip=
 	skip
 	
-rule r_skip (var in Integer)=
+rule r_skip (var in INTEGER)=
 	skip
 
 rule r_Main=

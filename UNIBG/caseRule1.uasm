@@ -1,6 +1,6 @@
 asm caseRule1
 
-	controlled counter -> Integer  initially 5
+	controlled counter -> INTEGER  initially 5
 
 
 

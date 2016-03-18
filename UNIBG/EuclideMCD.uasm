@@ -1,7 +1,7 @@
 asm EuclideMCD
 
-	controlled numA -> Integer initially 6409
-	controlled numB -> Integer initially 3289
+	controlled numA -> INTEGER initially 6409
+	controlled numB -> INTEGER initially 3289
 	
 
 
