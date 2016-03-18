@@ -24,5 +24,10 @@ domain D18 of Agent
 domain D19 of INTEGER
 domain D20 of SET(D19)
 domain D21 of (INTEGER,MAP(INTEGER,INTEGER))
+domain D22 of SET(INTEGER) initially {{1,5,9,6}}
+domain D23 of (x in INTEGER, SET(INTEGER)) initially {(1,{1,5,9,6})}
+domain D24 of (INTEGER, SET(INTEGER)) initially {(1,{1,5,9,6})}
+domain D25 of (INTEGER,MAP(INTEGER,INTEGER)) initially {(1,{1->5,9->6})}
+domain D26 of INTEGER initially {[0..50]}
 
 controlled prova -> SET(INTEGER)
