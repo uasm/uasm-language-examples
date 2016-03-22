@@ -1,0 +1,41 @@
+asm coffeeVendingMachine
+/*
+Automatic coffee vending machine:
+The machine distributes coffee, tea and milk. The machine accepts only 50 cents and 1 euro.
+If the user inserts 50 cents the machine distributes milk (if it's available); if the user inserts 1 euro
+the machine distributs randomly coffee or tea (if they are available).
+If a drink is distributed his availability is decremented and the money is preserved into the machine.
+Each step matches with the money insertion. 
+At the beginning the machine has 10 coffee, 10 tea and 10 milk. 
+The machine can contain 25 money maximum.
+The user decides the money to be insert at each step.
+*/
+
+	enum CoinType = {HALF, ONE}
+	enum Product = {COFFEE, TEA, MILK}
+	domain QuantityDomain of (INTEGER) initially {[0..10]}
+	domain CoinDomain of (INTEGER) initially {[0..25]}
+	controlled available (Product) -> QuantityDomain initially 10
+	controlled coins -> CoinDomain initially 0
+	monitored insertedCoin -> CoinType
+	
+
+rule r_serveProduct (p in Product) =  
+	{
+		available(p) := available(p)-1
+		coins := coins +1
+	}
+		
+rule Main=
+	if(coins < 25) then
+			if(insertedCoin = HALF) then
+				if(available(MILK) > 0) then
+					r_serveProduct(MILK)
+				endif
+			else
+				choose p in Product with p != MILK and available(p) > 0 do
+					r_serveProduct(p)
+			endif
+		endif
+
+exec Main

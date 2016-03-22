@@ -5,6 +5,6 @@ rule r_skip=
 
 rule r_Main=
 	let x=1 in
-		while x = 0 do r_skip
+		while (x = 0) do r_skip
 			
 exec r_Main

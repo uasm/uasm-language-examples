@@ -2,6 +2,7 @@ asm function1
 
 enum enumDom = {AA,BB}
 controlled counter -> INTEGER  initially 5
+controlled functionString -> STRING
 controlled functioncontrolled -> INTEGER
 controlled functioncontrolled2 (x) -> INTEGER
 controlled functioncontrolled3 (INTEGER, INTEGER) -> INTEGER
@@ -10,11 +11,12 @@ derived functionder -> INTEGER = if counter > 0 then counter+1 else 3
 derived functionder2 (x in INTEGER)-> INTEGER = x > 0 ? 1 : 3
 shared functionshared -> INTEGER initially 55
 out functionout -> STRING initially "OutFunction"
-derived functionder3 (INTEGER) -> SET(INTEGER) = {x+1,2,x+3,4,5}
+out functionout2 -> INTEGER initially 1
+//derived functionder3 (INTEGER) -> SET(INTEGER) = {x+1,2,x+3,4,5}
 derived functionder4 (x in INTEGER) -> LIST(INTEGER) = [x+1,2,x+3,4,5]
 derived functionder5 (x in INTEGER) -> MAP(INTEGER,INTEGER) = {(x+1)->5,2->8,(x+3)->8,4->7,5->9}
 
-derived functionder6 (INTEGER,SET(INTEGER)) -> MAP(INTEGER,INTEGER) = {(x+1)->5,2->8,(x+3)->8,4->7,5->9}
+derived functionder6 (INTEGER,SET(INTEGER)) -> MAP(INTEGER,INTEGER) = {(counter+1)->5,2->8,(counter+3)->8,4->7,5->9}
 
 
 rule r_Main=
