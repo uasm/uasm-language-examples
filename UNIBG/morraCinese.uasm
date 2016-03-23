@@ -1,0 +1,80 @@
+asm morraCinese
+
+/*
+Rock-paper-scissors is a zero-sum hand game usually played between two people, 
+in which each player simultaneously forms one of three shapes with an outstretched hand. 
+These shapes are "rock" (a simple fist), "paper" (a flat hand), and "scissors" (a fist 
+with the index and middle fingers together forming a V). The game has only three possible 
+outcomes other than a tie: a player who decides to play rock will beat another player 
+who has chosen scissors ("rock crushes scissors") but will lose to one who has played 
+paper ("paper covers rock"); a play of paper will lose to a play of scissors ("scissors 
+cut paper"). If both players throw the same shape, the game is tied and is usually 
+immediately replayed to break the tie.
+The model allows to play against the PC.
+The model saves the number of user and pc winner games.
+The model allows to set the maximum number of games.
+If after the maximum number of games the user and pc results mathc, the game goes on until
+the user or the pc wins.
+*/
+
+	enum Sign = {CARTA, FORBICE, SASSO}
+	enum Result = {WINFIRST, WINSECOND, PATTA}
+	monitored userChoice -> Sign //user choice
+	controlled computerChoice -> Sign //pc choice
+	
+	controlled userWins -> Integer initially 0 //user wins
+	controlled computerWins -> Integer initially 0 //pc wins
+	
+	controlled numberOfPlays -> Integer initially 0
+	controlled maxNumberOfPlays -> Integer initially maxNumberOfPlaysInit
+	monitored maxNumberOfPlaysInit -> Integer
+	
+	controlled outMess -> String initially "" //result of the game
+	static playResult (u in Sign, p in Sign) -> Result always if (u=p) then PATTA
+	else
+		case u of
+			FORBICE: WINFIRST
+			CARTA: WINFIRST
+			SASSO: WINFIRST
+			otherwise WINSECOND
+		endcase
+	endif
+	//given a copy of Sign, the function returns who wins
+	
+	
+	 
+
+rule Main=
+	if((numberOfPlays < maxNumberOfPlays) or
+			(numberOfPlays >= maxNumberOfPlays and userWins = computerWins)) then
+			par
+				choose s in Sign with true do
+					par
+						computerChoice := s 
+						case(playResult(userChoice, s)) of
+							WINFIRST:
+								par
+									outMess := "Hai vinto!"
+									userWins := userWins + 1
+								endpar
+							WINSECOND:
+								par
+									outMess := "Ha vinto il computer."
+									computerWins := computerWins + 1
+								endpar
+							PATTA:
+								outMess := "Patta."
+						endcase
+					endpar
+				numberOfPlays := numberOfPlays + 1
+			endpar
+		else
+			if(userWins < computerWins) then
+				outMess := "WINNER: computer"
+			else
+				outMess := "WINNER: user"
+			endif
+		endif
+
+
+exec Main
