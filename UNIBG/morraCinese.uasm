@@ -32,10 +32,10 @@ the user or the pc wins.
 	controlled outMess -> String initially "" //result of the game
 	static playResult (u in Sign, p in Sign) -> Result always if (u=p) then PATTA
 	else
-		case (u,p) of
-			(FORBICE,CARTA): WINFIRST
-			(CARTA,SASSO): WINFIRST
-			(SASSO,FORBICE): WINFIRST
+		case (#u,p#) of
+			(#FORBICE,CARTA#): WINFIRST
+			(#CARTA,SASSO#): WINFIRST
+			(#SASSO,FORBICE#): WINFIRST
 			otherwise WINSECOND
 		endcase
 	//given a copy of Sign, the function returns who wins
