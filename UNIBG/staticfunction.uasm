@@ -1,0 +1,18 @@
+asm example 
+controlled counter -> Integer initially 0 
+controlled a -> Integer initially counter 
+
+//static function isEmpty(s in SET(Integer)) -> Boolean always true
+
+static function min(s in SET(INTEGER)) -> INTEGER always 
+		if isEmpty(s) then undef 
+		else let el = chooseOne(s), min2 = min(subtract(el,s)) in 
+			if el < min2 then el else min2 
+
+static function sum(a in INTEGER, b in INTEGER) -> INTEGER always a + b 
+  
+
+rule r_Main (blubb) = 
+
+par counter := counter + 1 if counter
+>= 10 then a := ( b + 1 ) * 2 endpar
