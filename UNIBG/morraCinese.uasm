@@ -17,8 +17,8 @@ If after the maximum number of games the user and pc results mathc, the game goe
 the user or the pc wins.
 */
 
-	enum Sign = {CARTA, FORBICE, SASSO}
-	enum Result = {WINFIRST, WINSECOND, PATTA}
+	enum Sign = {PAPER, SCISSORS, ROCK}
+	enum Result = {WINFIRST, WINSECOND, PARI}
 	monitored userChoice -> Sign //user choice
 	controlled computerChoice -> Sign //pc choice
 	
@@ -30,12 +30,12 @@ the user or the pc wins.
 	monitored maxNumberOfPlaysInit -> Integer
 	
 	controlled outMess -> String initially "" //result of the game
-	static playResult (u in Sign, p in Sign) -> Result always if (u=p) then PATTA
+	static playResult (u in Sign, p in Sign) -> Result always if (u=p) then PARI
 	else
 		case (#u,p#) of
-			(#FORBICE,CARTA#): WINFIRST
-			(#CARTA,SASSO#): WINFIRST
-			(#SASSO,FORBICE#): WINFIRST
+			(#SCISSORS,PAPER#): WINFIRST
+			(#PAPER,ROCK#): WINFIRST
+			(#ROCK,SCISSORS#): WINFIRST
 			otherwise WINSECOND
 		endcase
 	//given a copy of Sign, the function returns who wins
@@ -61,8 +61,8 @@ rule Main=
 									outMess := "Ha vinto il computer."
 									computerWins := computerWins + 1
 								endpar
-							PATTA:
-								outMess := "Patta."
+							PARI:
+								outMess := "PARI."
 						endcase
 					endpar
 				numberOfPlays := numberOfPlays + 1
