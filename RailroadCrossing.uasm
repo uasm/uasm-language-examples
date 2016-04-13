@@ -20,7 +20,7 @@ domain Agents initially {trackController, gateController, observer, environment}
 
 // Is it safe to open the guard?
 derived safeToOpen = 
-    forall t in Track holds trackStatus(t) = empty 
+    forall t in Track with trackStatus(t) = empty 
     						or (now + dopen) < deadline(t)
 
 rule InitRule = par
