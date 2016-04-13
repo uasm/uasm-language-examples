@@ -24,7 +24,7 @@ asm ruleWithParameters1
 		endpar
 		
 	//INTEGER,Real not supported by ASMETA
-	rule paramExample (var in INTEGER, INTEGER, Real, x, y, Real, EnumDom, z in EnumDom) =
+	rule paramExample (var in INTEGER, INTEGER, Number, x, y, Number, EnumDom, z in EnumDom) =
 		skip
 		
 	

@@ -30,7 +30,7 @@ domain D24 of (INTEGER, SET(INTEGER)) initially {(#1,{1,5,9,6}#)}
 domain D25 of (INTEGER,MAP(INTEGER,INTEGER)) initially {(#1,{1->5,9->6}#)}
 domain D26 of INTEGER initially {[0..50]}
 domain D27 of (x in BOOLEAN, y in INTEGER, z in INTEGER) initially {(#true,2,6#),(#false,3,9#)}
-
+domain D28 of INTEGER initially {[0..50 step 5]}
 
 controlled prova -> SET(INTEGER)
 

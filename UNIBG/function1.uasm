@@ -15,7 +15,9 @@ out functionout2 -> INTEGER initially 1
 //derived functionder3 (INTEGER) -> SET(INTEGER) = {x+1,2,x+3,4,5}
 derived functionder4 (x in INTEGER) -> LIST(INTEGER) = [x+1,2,x+3,4,5]
 derived functionder5 (x in INTEGER) -> MAP(INTEGER,INTEGER) = {(x+1)->5,2->8,(x+3)->8,4->7,5->9}
-
+monitored monfunction (x in INTEGER) -> INTEGER
+out functionout3 (s in STRING) -> STRING initially "Out"
+shared functionshared  (s in STRING) -> INTEGER initially 55
 derived functionder6 (INTEGER,SET(INTEGER)) -> MAP(INTEGER,INTEGER) = {(counter+1)->5,2->8,(counter+3)->8,4->7,5->9}
 
 
