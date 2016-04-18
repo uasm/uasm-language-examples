@@ -1,14 +1,15 @@
 asm caseRule1
 
-	controlled counter -> INTEGER  initially 5
+controlled counter -> INTEGER initially 5
 
-
-
-rule r_Main=
-	case counter of
-		0: counter:=counter+1
-		1: counter:=counter+2
-		otherwise counter := 10
-	endcase
+rule r_Main =
+case counter of
+	0 :
+		counter := counter + 1
+	1 :
+		counter := counter + 2
+	otherwise
+		counter := 10
+endcase
 
 exec r_Main

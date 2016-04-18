@@ -1,15 +1,15 @@
 asm extendRule1
 
-	domain D2 of (INTEGER) initially {0,5,6}
-	domain D8 of (x in INTEGER, y in INTEGER) initially {(#0,2#),(#5,3#),(#15,25#)}
+domain D2 of ( INTEGER ) initially { 0 , 5 , 6 }
+domain D8 of ( x in INTEGER , y in INTEGER ) initially { (# 0 , 2 #) , (# 5 ,
+3 #) , (# 15 , 25 #) }
 
+rule r_provaprova ( x in D2 ) =
+skip
 
-
-rule r_provaprova(x in D2)=
-	skip
-	
 rule extendRule =
-	forall t in D2 with true do
-		extend D8 with y,z as newVar do r_provaprova(t)
-	
+forall t in D2 with true do
+	extend D8 with y , z as newVar do
+		r_provaprova ( t )
+
 exec extendRule

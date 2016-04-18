@@ -1,16 +1,16 @@
 asm seqNextRule1
 
-	enum EnumDom = {AA,BB}
+enum EnumDom = { AA , BB }
 
+rule r_skip =
+skip
 
-rule r_skip=
+rule r_Main =
+seq
 	skip
-
-rule r_Main=
-	seq
-		skip
-		forall x in EnumDom with x=AA do r_skip
+	forall x in EnumDom with x = AA do
 		r_skip
-	endseq
+	r_skip
+endseq
 
 exec r_Main

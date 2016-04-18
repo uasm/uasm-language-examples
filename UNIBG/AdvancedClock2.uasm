@@ -1,29 +1,29 @@
 asm AdvancedClock2
 
-	domain Second of (INTEGER) 
-	domain Minute of (INTEGER)
-	domain Hour of (INTEGER)
-	monitored signal -> BOOLEAN  
-	controlled seconds -> Second initially 0
-	controlled minutes -> Minute initially 0   
-	controlled hours -> Hour initially 0
+domain Second of ( INTEGER )
+domain Minute of ( INTEGER )
+domain Hour of ( INTEGER )
+monitored signal -> BOOLEAN
+controlled seconds -> Second initially 0
+controlled minutes -> Minute initially 0
+controlled hours -> Hour initially 0
 
-rule r_IncMinHours =  
-	par
-		if minutes = 59 then
-			hours := (hours + 1) mod 24
-		endif
-		minutes := (minutes + 1) mod 60
-	endpar
-		
-rule Main=
-	if signal then
-		par
-			if seconds = 59 then
-				r_IncMinHours
-			endif
-			seconds := (seconds + 1) mod 60
-		endpar
+rule r_IncMinHours =
+par
+	if minutes = 59 then
+		hours := ( hours + 1 ) mod 24
 	endif
+	minutes := ( minutes + 1 ) mod 60
+endpar
+
+rule Main =
+if signal then
+	par
+		if seconds = 59 then
+			r_IncMinHours
+		endif
+		seconds := ( seconds + 1 ) mod 60
+	endpar
+endif
 
 exec Main

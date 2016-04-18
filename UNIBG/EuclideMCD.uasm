@@ -1,17 +1,15 @@
 asm EuclideMCD
 
-	controlled numA -> INTEGER initially 6409
-	controlled numB -> INTEGER initially 3289
-	
-
+controlled numA -> INTEGER initially 6409
+controlled numB -> INTEGER initially 3289
 
 rule Main =
-		if(numA != numB) then
-			if(numA > numB) then
-				numA := numA - numB
-			else
-				numB := numB - numA
-			endif
-		endif
+if ( numA != numB ) then
+	if ( numA > numB ) then
+		numA := numA - numB
+	else
+		numB := numB - numA
+	endif
+endif
 
 exec Main

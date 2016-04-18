@@ -11,31 +11,30 @@ The machine can contain 25 money maximum.
 The user decides the money to be insert at each step.
 */
 
-	enum CoinType = {HALF, ONE}
-	enum Product = {COFFEE, TEA, MILK}
-	domain QuantityDomain of (INTEGER) initially {[0..10]}
-	domain CoinDomain of (INTEGER) initially {[0..25]}
-	controlled available (Product) -> QuantityDomain initially 10
-	controlled coins -> CoinDomain initially 0
-	monitored insertedCoin -> CoinType
-	
+enum CoinType = { HALF , ONE }
+enum Product = { COFFEE , TEA , MILK }
+domain QuantityDomain of ( INTEGER ) initially { [ 0 .. 10 ] }
+domain CoinDomain of ( INTEGER ) initially { [ 0 .. 25 ] }
+controlled available ( Product ) -> QuantityDomain initially 10
+controlled coins -> CoinDomain initially 0
+monitored insertedCoin -> CoinType
 
-rule r_serveProduct (p in Product) =  
-	{
-		available(p) := available(p)-1
-		coins := coins +1
-	}
-		
-rule Main=
-	if(coins < 25) then
-			if(insertedCoin = HALF) then
-				if(available(MILK) > 0) then
-					r_serveProduct(MILK)
-				endif
-			else
-				choose p in Product with p != MILK and available(p) > 0 do
-					r_serveProduct(p)
-			endif
+rule r_serveProduct ( p in Product ) =
+{
+	available ( p ) := available ( p ) - 1
+	coins := coins + 1
+}
+
+rule Main =
+if ( coins < 25 ) then
+	if ( insertedCoin = HALF ) then
+		if ( available ( MILK ) > 0 ) then
+			r_serveProduct ( MILK )
 		endif
+	else
+		choose p in Product with p != MILK and available ( p ) > 0 do
+			r_serveProduct ( p )
+	endif
+endif
 
 exec Main

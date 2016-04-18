@@ -17,63 +17,79 @@ If after the maximum number of games the user and pc results mathc, the game goe
 the user or the pc wins.
 */
 
-	enum Sign = {PAPER, SCISSORS, ROCK}
-	enum Result = {WINFIRST, WINSECOND, PARI}
-	monitored userChoice -> Sign //user choice
-	controlled computerChoice -> Sign //pc choice
-	
-	controlled userWins -> Integer initially 0 //user wins
-	controlled computerWins -> Integer initially 0 //pc wins
-	
-	controlled numberOfPlays -> Integer initially 0
-	controlled maxNumberOfPlays -> Integer initially maxNumberOfPlaysInit
-	monitored maxNumberOfPlaysInit -> Integer
-	
-	controlled outMess -> String initially "" //result of the game
-	static playResult (u in Sign, p in Sign) -> Result always if (u=p) then PARI
-	else
-		case (#u,p#) of
-			(#SCISSORS,PAPER#): WINFIRST
-			(#PAPER,ROCK#): WINFIRST
-			(#ROCK,SCISSORS#): WINFIRST
-			otherwise WINSECOND
-		endcase
-	//given a copy of Sign, the function returns who wins
-	
-	
-	 
+enum Sign = { PAPER , SCISSORS , ROCK }
+enum Result = { WINFIRST , WINSECOND , PARI }
+monitored userChoice -> Sign
+//user choice
 
-rule Main=
-	if((numberOfPlays < maxNumberOfPlays) or
-			(numberOfPlays >= maxNumberOfPlays and userWins = computerWins)) then
+controlled computerChoice -> Sign
+//pc choice
+
+controlled userWins -> Integer initially 0
+//user wins
+
+controlled computerWins -> Integer initially 0
+//pc wins
+
+controlled numberOfPlays -> Integer initially 0
+controlled maxNumberOfPlays -> Integer initially maxNumberOfPlaysInit
+monitored maxNumberOfPlaysInit -> Integer
+
+controlled outMess -> String initially ""
+//result of the game
+
+static playResult ( u in Sign , p in Sign ) -> Result always
+if ( u = p ) then
+	PARI
+else
+	case (# u , p #) of
+		(# SCISSORS , PAPER #) :
+			WINFIRST
+		(# PAPER , ROCK #) :
+			WINFIRST
+		(# ROCK , SCISSORS #) :
+			WINFIRST
+		otherwise
+			WINSECOND
+	endcase
+endif
+//given a copy of Sign, the function returns who wins
+
+
+rule Main =
+if ( ( numberOfPlays < maxNumberOfPlays ) or ( numberOfPlays >=
+maxNumberOfPlays and userWins = computerWins ) ) then
+	par
+		choose s in Sign with true do
 			par
-				choose s in Sign with true do
-					par
-						computerChoice := s 
-						case(playResult(userChoice, s)) of
-							WINFIRST:
-								par
-									outMess := "Hai vinto!"
-									userWins := userWins + 1
-								endpar
-							WINSECOND:
-								par
-									outMess := "Ha vinto il computer."
-									computerWins := computerWins + 1
-								endpar
-							PARI:
-								outMess := "PARI."
-						endcase
-					endpar
-				numberOfPlays := numberOfPlays + 1
+				computerChoice := s
+				case ( playResult ( userChoice , s ) ) of
+					WINFIRST :
+						par
+							outMess := "Hai vinto!"
+							userWins := userWins + 1
+						endpar
+					WINSECOND :
+						par
+							outMess := "Ha vinto il computer."
+							computerWins := computerWins + 1
+						endpar
+					PARI :
+						par
+							outMess := "PARI."
+							skip
+						endpar
+				endcase
 			endpar
-		else
-			if(userWins < computerWins) then
-				outMess := "WINNER: computer"
-			else
-				outMess := "WINNER: user"
-			endif
-		endif
-
+		endchoose
+		numberOfPlays := numberOfPlays + 1
+	endpar
+else
+	if ( userWins < computerWins ) then
+		outMess := "WINNER: computer"
+	else
+		outMess := "WINNER: user"
+	endif
+endif
 
 exec Main

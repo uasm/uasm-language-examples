@@ -1,36 +1,43 @@
 asm domainTest
 
+enum Prova = { AA , BB }
 
-enum Prova = {AA,BB}
-
-domain D1 of (NUMBER)
-domain D2 of (INTEGER) initially {0,5,6}
-domain D3 of (INTEGER,INTEGER)
-domain D4 of (INTEGER,INTEGER) initially {(#2,5#),(#3,8#)}
-domain D5 of (x in INTEGER)
-domain D6 of (x in INTEGER) initially {8,11}
-domain D7 of (x in INTEGER, y in INTEGER)
-domain D8 of (x in INTEGER, y in INTEGER) initially {(#0,2#),(#5,3#),(#15,25#)}
-domain D9 of (x)
-domain D10 of (x) initially {8,11}
-domain D11 of (x, y)
-domain D12 of (x, y) initially {(#0,2#),(#5,3#)}
-domain D13 of (x in INTEGER, INTEGER, y)
-domain D14 of (x in INTEGER, INTEGER, y) initially {(#0,2,6#),(#5,3,9#)}
-domain D15 of (x in Prova, y in INTEGER)
-domain D16 of (x in INTEGER, y in INTEGER, z in INTEGER) initially {(#0,2,6#),(#5,3,9#)}
-domain D17 of (x in STRING, y in INTEGER, z in INTEGER) initially {(#"Name1",2,6#),(#"Name2",3,9#)}
+domain D1 of ( NUMBER )
+domain D2 of ( INTEGER ) initially { 0 , 5 , 6 }
+domain D3 of ( INTEGER , INTEGER )
+domain D4 of ( INTEGER , INTEGER ) initially { (# 2 , 5 #) , (# 3 , 8 #) }
+domain D5 of ( x in INTEGER )
+domain D6 of ( x in INTEGER ) initially { 8 , 11 }
+domain D7 of ( x in INTEGER , y in INTEGER )
+domain D8 of ( x in INTEGER , y in INTEGER ) initially { (# 0 , 2 #) , (# 5 ,
+3 #) , (# 15 , 25 #) }
+domain D9 of ( x )
+domain D10 of ( x ) initially { 8 , 11 }
+domain D11 of ( x , y )
+domain D12 of ( x , y ) initially { (# 0 , 2 #) , (# 5 , 3 #) }
+domain D13 of ( x in INTEGER , INTEGER , y )
+domain D14 of ( x in INTEGER , INTEGER , y ) initially { (# 0 , 2 , 6 #) , (#
+5 , 3 , 9 #) }
+domain D15 of ( x in Prova , y in INTEGER )
+domain D16 of ( x in INTEGER , y in INTEGER , z in INTEGER ) initially { (# 0
+, 2 , 6 #) , (# 5 , 3 , 9 #) }
+domain D17 of ( x in STRING , y in INTEGER , z in INTEGER ) initially { (#
+"Name1" , 2 , 6 #) , (# "Name2" , 3 , 9 #) }
 domain D18 of Agent
 domain D19 of INTEGER
-domain D20 of SET(D19)
-domain D21 of (INTEGER,MAP(INTEGER,INTEGER))
-domain D22 of SET(INTEGER) initially {{1,5,9,6}}
-domain D23 of (x in INTEGER, SET(INTEGER)) initially {(#1,{1,5,9,6}#)}
-domain D24 of (INTEGER, SET(INTEGER)) initially {(#1,{1,5,9,6}#)}
-domain D25 of (INTEGER,MAP(INTEGER,INTEGER)) initially {(#1,{1->5,9->6}#)}
-domain D26 of INTEGER initially {[0..50]}
-domain D27 of (x in BOOLEAN, y in INTEGER, z in INTEGER) initially {(#true,2,6#),(#false,3,9#)}
-domain D28 of INTEGER initially {[0..50 step 5]}
+domain D20 of SET ( D19 )
+domain D21 of ( INTEGER , MAP ( INTEGER , INTEGER ) )
+domain D22 of SET ( INTEGER ) initially { { 1 , 5 , 9 , 6 } }
+domain D23 of ( x in INTEGER , SET ( INTEGER ) ) initially { (# 1 , { 1 , 5 ,
+9 , 6 } #) }
+domain D24 of ( INTEGER , SET ( INTEGER ) ) initially { (# 1 , { 1 , 5 , 9 , 6
+} #) }
+domain D25 of ( INTEGER , MAP ( INTEGER , INTEGER ) ) initially { (# 1 , { 1
+-> 5 , 9 -> 6 } #) }
+domain D26 of INTEGER initially { [ 0 .. 50 ] }
+domain D27 of ( x in BOOLEAN , y in INTEGER , z in INTEGER ) initially { (#
+true , 2 , 6 #) , (# false , 3 , 9 #) }
+domain D28 of INTEGER initially { [ 0 .. 50 step 5 ] }
 
-controlled prova -> SET(INTEGER)
+controlled prova -> SET ( INTEGER )
 

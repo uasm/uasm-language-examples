@@ -1,17 +1,18 @@
 asm chooseRule1
 
-	domain D20 of SET(INTEGER)
-	enum enumdom = {AA,BB}
-	controlled counter -> INTEGER  initially 5
+domain D20 of SET ( INTEGER )
+enum enumdom = { AA , BB }
+controlled counter -> INTEGER initially 5
 
+rule r_skip =
+skip
 
-rule r_skip=
-	skip
-
-rule r_Main=
+rule r_Main =
 {
-	choose x in enumdom, y in enumdom with x=AA do r_skip
-	choose z in enumdom with false do r_skip
+	choose x in enumdom , y in enumdom with x = AA do
+		r_skip
+	choose z in enumdom with false do
+		r_skip
 }
 
 exec r_Main

@@ -1,14 +1,13 @@
 asm letRule1
 
-	enum EnumDom = {AA,BB}
+enum EnumDom = { AA , BB }
 
+rule r_skip =
+skip
 
-rule r_skip=
-	skip
+rule r_Main =
+let x5 = 1 , y5 = 10 in
+	if ( x5 = 1 ) then
+		r_skip
 
-rule r_Main=
-	let x5=1, y5=10 in 
-		if (x5=1) then
-			r_skip
-			
 exec r_Main

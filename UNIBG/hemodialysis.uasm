@@ -1,27 +1,28 @@
-asm hemodialysis 
-	
-	enum PhaseTherapy = {PREPARATION, INITIATION, ENDING} 
-	controlled phaseTherapy -> PhaseTherapy initially PREPARATION
-	
-		rule r_Main = 
-					par
-					if (phaseTherapy = PREPARATION) then
-					 r_preparation
-					endif
-					 if (phaseTherapy = INITIATION) then
-					 r_initiation 
-					endif
-					 if (phaseTherapy = ENDING) then
-					 r_ending 
-					endif 
-					endpar
-					
-	rule preparation =  
-					phaseTherapy := INITIATION 
-	rule r_initiation =  
-					phaseTherapy := ENDING
-	rule r_ending = 
-					skip
+asm hemodialysis
 
-	
-	exec r_Main
+enum PhaseTherapy = { PREPARATION , INITIATION , ENDING }
+controlled phaseTherapy -> PhaseTherapy initially PREPARATION
+
+rule r_Main =
+par
+	if ( phaseTherapy = PREPARATION ) then
+		r_preparation
+	endif
+	if ( phaseTherapy = INITIATION ) then
+		r_initiation
+	endif
+	if ( phaseTherapy = ENDING ) then
+		r_ending
+	endif
+endpar
+
+rule preparation =
+phaseTherapy := INITIATION
+
+rule r_initiation =
+phaseTherapy := ENDING
+
+rule r_ending =
+skip
+
+exec r_Main

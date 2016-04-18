@@ -1,31 +1,33 @@
-asm ruleWithParameters1 
-	
-	enum EnumDom ={AA, BB}
-	controlled counter -> INTEGER initially 0
-	controlled sum -> INTEGER
-	
-	rule r_Main = 
-		par
-			computeSum (counter, counter)
-			counter := counter + 1
-		endpar
-	
-	rule r_skip (variable in INTEGER) =
-		skip
-				
-	rule r_skip2 (var in INTEGER) =
-		r_skip(var)
-	
-	rule computeSum (num in INTEGER, num2 in INTEGER)=  
-		par
-			sum:=num+1+num2
-			num:=5
-			r_skip2(num)
-		endpar
-		
-	//INTEGER,Real not supported by ASMETA
-	rule paramExample (var in INTEGER, INTEGER, Number, x, y, Number, EnumDom, z in EnumDom) =
-		skip
-		
-	
-	exec r_Main
+asm ruleWithParameters1
+
+enum EnumDom = { AA , BB }
+controlled counter -> INTEGER initially 0
+controlled sum -> INTEGER
+
+rule r_Main =
+par
+	computeSum ( counter , counter )
+	counter := counter + 1
+endpar
+
+rule r_skip ( variable in INTEGER ) =
+skip
+
+rule r_skip2 ( var in INTEGER ) =
+r_skip ( var )
+
+rule computeSum ( num in INTEGER , num2 in INTEGER ) =
+par
+	sum := num + 1 + num2
+	num := 5
+	r_skip2 ( num )
+endpar
+
+//INTEGER,Real not supported by ASMETA
+
+
+rule paramExample ( var in INTEGER , INTEGER , Number , x , y , Number ,
+EnumDom , z in EnumDom ) =
+skip
+
+exec r_Main

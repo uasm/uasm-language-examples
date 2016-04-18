@@ -1,17 +1,16 @@
 asm SetComprehensionTermExample
 
-	domain D20 of LIST(INTEGER) initially {[1,5,9,6]} 
-	controlled f -> SET(Integer)
-	controlled g -> LIST(Integer)
-	
-	
-rule r_foo(x in Integer, y in Integer, z in Integer) =
+domain D20 of LIST ( INTEGER ) initially { [ 1 , 5 , 9 , 6 ] }
+controlled f -> SET ( Integer )
+controlled g -> LIST ( Integer )
+
+rule r_foo ( x in Integer , y in Integer , z in Integer ) =
 par
-	f := {y * v1 | v1 in Integer with v1 = z }
-	g := [y * v2 | v2 in D20 with v2 = z ]
+	f := { y * v1 | v1 in Integer with v1 = z }
+	g := [ y * v2 | v2 in D20 with v2 = z ]
 endpar
 
-rule Main=
-	r_foo(0,0,0)
+rule Main =
+r_foo ( 0 , 0 , 0 )
 
 exec Main
