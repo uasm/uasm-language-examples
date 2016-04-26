@@ -9,7 +9,7 @@ skip
 
 rule r_Main =
 {
-	choose x in [ 0 .. 50 ] , y in [ 0 .. 20 ] with true do
+	choose x in [0..50] , y in [0..20] with true do
 		r_skip
 	choose z in enumdom with false do
 		r_skip
