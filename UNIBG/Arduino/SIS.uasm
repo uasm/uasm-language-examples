@@ -1,0 +1,96 @@
+asm SIS
+
+enum Switch = { ON , OFF }
+enum Pressure = { TOOLOW , NORMAL , HIGH }
+
+domain WaterpressureType of ( INTEGER ) initially { [ 0 .. 20 ] }
+domain Delta of ( INTEGER ) initially { [ -15 .. 15 ] }
+
+controlled waterpressure -> WaterpressureType initially 3
+controlled pressure -> Pressure initially TOOLOW
+controlled overridden -> Boolean initially false
+controlled safetyInjection -> Switch initially OFF
+
+monitored reset -> Switch
+monitored block -> Switch
+monitored delta -> Delta
+
+static low -> WaterpressureType always 9
+static permit -> WaterpressureType always 10
+static maxwp -> WaterpressureType always 20
+static minwp -> WaterpressureType always 0
+
+rule r_wp =
+if waterpressure + delta < minwp then
+	waterpressure := minwp
+else
+	if waterpressure + delta > maxwp then
+		waterpressure := maxwp
+	else
+		waterpressure := waterpressure + delta
+	endif
+endif
+
+rule r_1 =
+if waterpressure >= low and pressure = TOOLOW then
+	pressure := NORMAL
+endif
+
+rule r_2 =
+if waterpressure >= permit and pressure = NORMAL then
+	par
+		pressure := HIGH
+		overridden := false
+	endpar
+endif
+
+rule r_3 =
+if waterpressure < low and pressure = NORMAL then
+	pressure := TOOLOW
+endif
+
+rule r_4 =
+if waterpressure < permit and pressure = HIGH then
+	par
+		pressure := NORMAL
+		overridden := false
+	endpar
+endif
+
+rule r_5 =
+if reset = ON and ( pressure = TOOLOW or pressure = NORMAL ) then
+	overridden := false
+endif
+
+rule r_6 =
+if block = ON and reset = OFF and pressure = TOOLOW then
+	overridden := true
+endif
+
+rule r_7 =
+if pressure = TOOLOW then
+	if overridden then
+		safetyInjection := OFF
+	else
+		safetyInjection := ON
+	endif
+endif
+
+rule r_8 =
+if pressure != TOOLOW then
+	safetyInjection := OFF
+endif
+
+rule r_Main =
+par
+	r_wp
+	r_1
+	r_2
+	r_3
+	r_4
+	r_5
+	r_6
+	r_7
+endpar
+
+exec r_Main
